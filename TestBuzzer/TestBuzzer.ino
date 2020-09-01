@@ -4,7 +4,7 @@
  Author:	MCP
 */
 
-int buzzerPin = 4;    // the number of the buzzer pin
+int buzzerPin = 7;    // the number of the buzzer pin
 float sinVal;         // Define a variable to save sine value
 int toneVal;          // Define a variable to save sound frequency
 bool on;
@@ -21,7 +21,7 @@ void loop() {
 	//on = !on;
 	//digitalWrite(4, on ? HIGH : LOW);
 	//delay(5000);
-	return;
+	//return;
 	#define BASE_FREQ	5000
 	#define SIN_FACTOR	(BASE_FREQ / 4)
 
@@ -29,6 +29,6 @@ void loop() {
 		sinVal = sin(x * (PI / 180));					// Calculate the sine of x
 		toneVal = BASE_FREQ + sinVal * SIN_FACTOR;      // Calculate sound frequency according to the sine of x
 		tone(buzzerPin, toneVal);						// Output sound frequency to buzzerPin
-		delay(10);
+		delay(100);
 	}
 }

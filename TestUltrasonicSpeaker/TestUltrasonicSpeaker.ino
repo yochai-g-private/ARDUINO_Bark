@@ -19,6 +19,7 @@ enum
 	SPEAKER_PIN			= D7,
 	POTENTIOMETER_PIN	= A7,
 	LED_PIN				= A4,
+    NOISE_SENSOR_PIN    = A0,
 };
 
 PullupPushButton		button(BUTTON_PIN);
@@ -48,7 +49,7 @@ void loop()
 	
 	if (pitch_changed)
 	{
-		enum { MIN_FREQ = 1000, MAX_FREQ = 22000 };
+		enum { MIN_FREQ = 1000, MAX_FREQ = 30000 };
 
 		sound_frequency = MIN_FREQ + ((MAX_FREQ - MIN_FREQ) / (1024 / pitch.GetDeviation())) * sound_pitch;
 
@@ -61,7 +62,7 @@ void loop()
 	if (button_changed)
 	{
 		LOGGER << "Button " << (pressed ? "pressed" : "released") << NL;
-		led.Set(pressed);
+		//led.Set(pressed);
 
 		if (pressed)
 			speaker.Tone(sound_frequency);
@@ -73,6 +74,47 @@ void loop()
 		if(pitch_changed && speaker.Get())
 			speaker.Tone(sound_frequency);
 	}
+#if 1
+    #define sampleWindow 50
 
-	delay(100);
+    unsigned long startMillis = millis();  // Start of sample window
+    unsigned int peakToPeak = 0;   // peak-to-peak level
+
+    unsigned int signalMax = 0;
+    unsigned int signalMin = 1024;
+
+    // collect data for 50 mS
+    while (millis() - startMillis < sampleWindow)
+    {
+        unsigned int sample = analogRead(0);
+        if (sample < 1024)  // toss out spurious readings
+        {
+            if (sample > signalMax)
+            {
+                signalMax = sample;  // save just the max levels
+            }
+            else if (sample < signalMin)
+            {
+                signalMin = sample;  // save just the min levels
+            }
+        }
+    }
+    peakToPeak = signalMax - signalMin;  // max - min = peak-peak amplitude
+    //double volts = (peakToPeak * 5.0) / 1024;  // convert to volts
+
+    led.Set(peakToPeak > 500 ? HIGH : LOW);
+#else
+    int value = analogRead(NOISE_SENSOR_PIN);//read the value of A0
+    //Serial.println(value);//print the value
+    if (value > 600) //if the value is greater than 600
+    {
+        led.On();// digitalWrite(ledPin, HIGH);//turn on the led
+        //delay(200);//delay 200ms
+    }
+    else
+    {
+        led.Off(); //digitalWrite(ledPin, LOW);//turn off the led
+    }
+#endif
+	//delay(100);
 }

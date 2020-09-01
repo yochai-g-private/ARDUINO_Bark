@@ -18,9 +18,10 @@ void setup() {
 void loop() 
 {
 	int value = analogRead(soundPin);//read the value of A0
-	Serial.println(value);//print the value
+	//Serial.println(value);//print the value
 	if (value > 600) //if the value is greater than 600
 	{
+        Serial.println(value);
 		digitalWrite(ledPin, HIGH);//turn on the led
 		delay(200);//delay 200ms
 	}
@@ -28,4 +29,6 @@ void loop()
 	{
 		digitalWrite(ledPin, LOW);//turn off the led
 	}
+
+    //delay(100);
 }
