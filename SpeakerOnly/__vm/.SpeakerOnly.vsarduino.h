@@ -17,7 +17,7 @@
 #define __AVR_ATmega328P__
 #define __AVR_ATmega328p__
 #define _VMDEBUG 1
-#define _USE_LOGGER
+#define _USE_LOGGER 1
 #define F_CPU 16000000L
 #define ARDUINO 108013
 #define ARDUINO_AVR_NANO
@@ -80,6 +80,6 @@ typedef void *__builtin_va_list;
 #define pgm_read_float(address_short) float()
 #define pgm_read_ptr(address_short)   short()
 
-#include "Bark.ino"
+#include "SpeakerOnly.ino"
 #endif
 #endif

@@ -17,6 +17,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "TestUltrasonicSpeaker", "Te
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "NYG_Library", "..\..\Libraries\NYG_Library.vcxitems", "{62C10FDB-437D-4FC4-AF28-4BF3DFA5D158}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "SpeakerOnly", "SpeakerOnly\SpeakerOnly.vcxproj", "{09DE031C-AF76-4D56-911F-30F4C48098E7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x86 = Debug|x86
@@ -43,6 +45,10 @@ Global
 		{58AE77AE-30D9-4622-A636-45F43C57C30C}.Debug|x86.Build.0 = Debug|Win32
 		{58AE77AE-30D9-4622-A636-45F43C57C30C}.Release|x86.ActiveCfg = Release|Win32
 		{58AE77AE-30D9-4622-A636-45F43C57C30C}.Release|x86.Build.0 = Release|Win32
+		{09DE031C-AF76-4D56-911F-30F4C48098E7}.Debug|x86.ActiveCfg = Debug|Win32
+		{09DE031C-AF76-4D56-911F-30F4C48098E7}.Debug|x86.Build.0 = Debug|Win32
+		{09DE031C-AF76-4D56-911F-30F4C48098E7}.Release|x86.ActiveCfg = Release|Win32
+		{09DE031C-AF76-4D56-911F-30F4C48098E7}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
